@@ -42,7 +42,7 @@ docker pull woahbase/alpine-lychee:x86_64
 #### Configuration Defaults
 ---
 
-* Lychee is located at the root endpoint `/`, with configurations
+* Lychee is located at the endpoint `/lychee/`, with configurations
   at `/config/lychee/` and data at `/config/lychee/data/`.
   Uploaded images go to `/config/www/lychee/uploads`.
 

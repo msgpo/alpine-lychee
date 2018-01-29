@@ -1,6 +1,6 @@
 server {
 	listen 80;
-	root /config/www/lychee;
+	root /config/www;
 	index index.html index.htm index.php;
 
 	keepalive_requests	  10;
@@ -56,7 +56,7 @@ server {
 
 server {
 	listen 443 ssl;
-	root /config/www/lychee;
+	root /config/www;
 	index index.html index.htm index.php;
 
 	keepalive_requests	  10;
