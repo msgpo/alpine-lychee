@@ -247,7 +247,7 @@ Maintained by [WOAHBase][204].
 [136]: http://php.net/
 [137]: https://lychee.electerious.com/
 [138]: https://github.com/electerious/Lychee/releases
-[138]: https://hub.docker.com/r/woahbase/alpine-mysql
+[139]: https://hub.docker.com/r/woahbase/alpine-mysql
 
 [201]: https://github.com/woahbase
 [202]: https://travis-ci.org/woahbase/
