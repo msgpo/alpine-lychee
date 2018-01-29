@@ -6,6 +6,8 @@
 
 This [image][233] containerizes [Lychee][137] Image Gallery along
 with its php dependencies to setup a pesonal image repository.
+**Database and images not included**. Checkout [alpine-mysql][139]
+to configure your own MySQL server in a container
 
 Based on [Alpine Linux][131] from my [alpine-php][132] image with
 [NGINX][135], [PHP7][136] and the [s6][133] init system
@@ -245,6 +247,7 @@ Maintained by [WOAHBase][204].
 [136]: http://php.net/
 [137]: https://lychee.electerious.com/
 [138]: https://github.com/electerious/Lychee/releases
+[138]: https://hub.docker.com/r/woahbase/alpine-mysql
 
 [201]: https://github.com/woahbase
 [202]: https://travis-ci.org/woahbase/
