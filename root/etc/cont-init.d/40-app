@@ -1,0 +1,42 @@
+#!/usr/bin/with-contenv bash
+
+# application specific configurations
+[[ ! -f /config/www/lychee/.user.ini ]] && (
+
+    echo "Setting up Lychee at /config/www/lychee";
+    # create our folders/files
+    mkdir -p \
+        /config/www/lychee/data \
+        /config/log/lychee
+
+    # install lychee
+    tar xvf \
+    ${LYCHEE_SRC} -C \
+        /config/www/lychee --strip-components=1 && \
+
+    touch /config/log/lychee/{access,error}_lychee_log
+
+    # for image_index in {big,import,medium,thumb}; do
+    #     if [ ! -f /pictures/${image_index}/index.html ]; then
+    #       mkdir -p /pictures/${image_index}
+    #       : > /pictures/${image_index}/index.html
+    #     fi
+    # done
+
+    # copy config
+    [[ ! -e /config/www/lychee/user.ini ]] && \
+        cp /defaults/user.ini /config/www/lychee/.user.ini
+
+    # install lychee rss
+    # unzip ${LYCHEE_RSS_SRC} -d /config/www/lychee/plugins \
+    #     && mv /config/www/lychee/plugins/{Lychee-RSS-master,rss}
+
+) || echo "Lychee Installation found";
+
+# permissions
+chown -R alpine:alpine \
+    /config \
+    /var/tmp/nginx \
+    /config/www/lychee
+
+echo "Done";

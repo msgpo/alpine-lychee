@@ -1,0 +1,39 @@
+ARG ARCH=frommakefile
+ARG DOCKERSRC=frommakefile
+ARG USERNAME=frommakefile
+#
+FROM ${USERNAME}/${DOCKERSRC}:${ARCH}
+#
+ARG PUID=1000
+ARG PGID=1000
+#
+ENV LYCHEE_SRC=/opt/lychee/lychee.zip
+    # LYCHEE_RSS_SRC=/opt/lychee/lychee-rss.zip
+RUN set -xe \
+    && apk add --no-cache --purge -uU \
+        curl \
+        unzip \
+		php7-exif \
+    	php7-gd \
+    	php7-imagick \
+    	php7-mysqli \
+    	php7-mysqlnd \
+    	php7-openssl \
+    	php7-pdo_mysql \
+    	php7-phar \
+    	php7-posix \
+    	php7-session \
+    	php7-zip \
+    	php7-zlib \
+    	re2c \
+    && mkdir -p /opt/lychee \
+    && VERSION=$(curl -sX GET "https://api.github.com/repos/electerious/Lychee/releases/latest" \
+        | awk '/tag_name/{print $4;exit}' FS='[""]') \
+    && echo "Lychee version: ${VERSION}" > /opt/lychee/version \
+    && curl -o ${LYCHEE_SRC} -SL "https://github.com/electerious/Lychee/archive/${VERSION}.tar.gz" \
+    # && curl -o ${LYCHEE_RSS_SRC} -SL "https://github.com/cternes/Lychee-RSS/archive/master.zip" \
+    && rm -rf /var/cache/apk/* /tmp/*
+# add local files
+COPY root/ /
+# ports, volumes etc from php
+# ENTRYPOINT ["/init"]
