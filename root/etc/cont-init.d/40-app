@@ -1,20 +1,20 @@
 #!/usr/bin/with-contenv bash
 
+# create our folders/files
+mkdir -p \
+    /config/www/lychee/data \
+    /config/log/lychee
+
+touch /config/log/lychee/{access,error}_lychee_log
+
 # application specific configurations
 [[ ! -f /config/www/lychee/.user.ini ]] && (
 
     echo "Setting up Lychee at /config/www/lychee";
-    # create our folders/files
-    mkdir -p \
-        /config/www/lychee/data \
-        /config/log/lychee
-
     # install lychee
     tar xvf \
     ${LYCHEE_SRC} -C \
         /config/www/lychee --strip-components=1 && \
-
-    touch /config/log/lychee/{access,error}_lychee_log
 
     # for image_index in {big,import,medium,thumb}; do
     #     if [ ! -f /pictures/${image_index}/index.html ]; then
